@@ -23,13 +23,20 @@ public class Carrello {
             System.out.println("Scelta inesistente, riprovare! ");
             scelta = in.nextLine().toLowerCase();
         }
+        String nome;
+        double price;
+        BigDecimal prezzo;
         switch(scelta){
             case "smartphone":
             System.out.println("Digitare nome smartphone:");
-            String nome = in.nextLine();
+            nome = in.nextLine();
             System.out.println("Quanto costa?");
-            double price = in.nextDouble();
-            BigDecimal prezzo = new BigDecimal(price);
+            price = in.nextDouble();
+            while(price <= 0){
+                System.out.println("Prezzo non valido, reinserire valore(maggiore di 0, nulla è gratis ;) )");
+                price = in.nextDouble();
+            }
+            prezzo = new BigDecimal(price);
             System.out.println("Da quanti gb di memoria? (64), (128), (256), (512), (1024)");
             int gb = in.nextInt();
             while(gb != 64 && gb != 128 && gb != 256 && gb != 512 && gb != 1024){
@@ -40,10 +47,54 @@ public class Carrello {
             System.out.println(acquisto.toString());
             break;
             case "televisore":
-            System.out.println("Televisore");
+            System.out.println("Digitare nome televisore:");
+            nome = in.nextLine();
+            System.out.println("Quanto costa?");
+            price = in.nextDouble();
+            while(price <= 0){
+                System.out.println("Prezzo non valido, reinserire valore(maggiore di 0, nulla è gratis ;) )");
+                price = in.nextDouble();
+            }
+            prezzo = new BigDecimal(price);
+            System.out.println("Da quanti pollici? ");
+            int pollici = in.nextInt();
+            while(pollici <= 10){
+                System.out.println("Dimensione inesistente, almeno 11 pollici!");
+                pollici = in.nextInt();
+            }
+            System.out.println("Desideri una tv normale o una smartTV?");
+            String smart = in.nextLine().toLowerCase();
+            while(!smart.equals("tv normale") && !smart.equals("smarttv")){
+                System.out.println("Errore! Selezionare una scelta valida tra le 2 soprastanti:");
+                smart = in.nextLine().toLowerCase();
+            }
+            boolean typeTV = false;
+            if(smart.equals("smarttv")){
+                typeTV = true;
+            }
+            Televisore tvScelta = new Televisore(nome, "", prezzo, new BigDecimal(0.22), pollici, typeTV);
+            System.out.println(tvScelta.toString());
             break;
             case "cuffie":
-            System.out.println("Cuffie");
+            System.out.println("Digitare nome cuffie:");
+            nome = in.nextLine();
+            System.out.println("Quanto costano?");
+            price = in.nextDouble();
+            while(price <= 0){
+                System.out.println("Prezzo non valido, reinserire valore(maggiore di 0, nulla è gratis ;) )");
+                price = in.nextDouble();
+            }
+            prezzo = new BigDecimal(price);
+            System.out.println("Di che colore le vuoi?");
+            String colore = in.nextLine();
+            System.out.println("Le vuoi con cavo o wireless?");
+            String typeHeadphones = in.nextLine().toLowerCase();
+            while(!typeHeadphones.equals("con cavo") && !typeHeadphones.equals("wireless")){
+                System.out.println("Scelta inesistente! Riprova:");
+                typeHeadphones = in.nextLine().toLowerCase();
+            }
+            Cuffie cuffie = new Cuffie(nome, "", prezzo, new BigDecimal(0.22), colore, typeHeadphones);
+            System.out.println(cuffie.toString());
             break;
         }
     }
