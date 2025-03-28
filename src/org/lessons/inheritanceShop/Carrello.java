@@ -37,9 +37,9 @@ public class Carrello {
                 price = in.nextDouble();
             }
             prezzo = new BigDecimal(price);
-            System.out.println("Da quanti gb di memoria? (64), (128), (256), (512), (1024)");
+            System.out.println("Da quanti gb di memoria? (4), (8), (16), (32), (64), (128), (256), (512), (1024)");
             int gb = in.nextInt();
-            while(gb != 64 && gb != 128 && gb != 256 && gb != 512 && gb != 1024){
+            while(gb != 4 && gb != 8 && gb != 16 && gb != 32 && gb != 64 && gb != 128 && gb != 256 && gb != 512 && gb != 1024){
                 System.out.println("Scelta non valida, riprovare!");
                 gb = in.nextInt();
             }

@@ -89,6 +89,13 @@ public class Prodotto {
        }
        return null;
    }
+
+   public BigDecimal getPriceDiscounted(){
+    BigDecimal price_discount = getPriceWIva().multiply(new BigDecimal(0.98));
+    return price_discount;
+   }
+
+   
    @Override
    public String toString(){
        if(nome != null){
